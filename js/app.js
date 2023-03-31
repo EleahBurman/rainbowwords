@@ -13,7 +13,7 @@
 // include losingSquares (random letters), using query selector, loop, math floor and math random
 // inclue message every time someone chooses a wrong word using query selector
 // include reset button using query selector
-// include winning message telling them if they get red (aka gold), orange, yellow, green, blue or purple trophies depending on their amount of words
+// include winning message telling them if they get gold, silver or bronze trophies
 /*----------------------------- Event Listeners -----------------------------*/
 //squareChoices targeting the item click square to invoke handle click flunction
 //listens for the click of the reset button and effects function turn
