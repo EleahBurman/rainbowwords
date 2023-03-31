@@ -5,10 +5,11 @@
 /*-------------------------------- Constants --------------------------------*/
 //import randomWinningwordsa, randomWinningwordsb, randomWinningWwordsc, randomWinningwordsd, randomWinningwordse from board.js
 //import audio from audio.js
+//winning squares given for each board with the string letters attached to each spot - in total there will be 6 words correct on each of the 6 boards - total of 36 words
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-//include variables with the term let for board, turnsleft, winner, message (winning and losing), random (for losing letters)
+//include variables with the term let for board, turnsleft, winner, message (winning and losing)
 /*------------------------ Cached Element References ------------------------*/
 // include losingSquares (random letters), using query selector, loop, math floor and math random
 // inclue message every time someone chooses a wrong word using query selector
