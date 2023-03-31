@@ -4,6 +4,8 @@
 
 /*-------------------------------- Constants --------------------------------*/
 //import randomWinningwordsa, randomWinningwordsb, randomWinningwordsc, randomWinningwordsd, randomWinningwordse from board.js
+import { winningWordsa } from "../data/board";
+import { winningWordsb } from "../data/board";
 //import audio from audio.js
 //winning squares given for each board with the string letters attached to each spot - in total there will be 6 words correct on each of the 6 boards - total of 36 words
 

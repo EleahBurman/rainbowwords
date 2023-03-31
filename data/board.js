@@ -18,5 +18,11 @@ const winningWordsb = [
   {B9: 'L', C9: 'E', D9: 'S', E9: 'B', F9: 'I', G9: 'A', H9: 'N'}
 ]
 
-//function randomWinningWordA through E using math.random and winningwords.length
-//export the function randomWinningWordsA - E
+//export the function randomWinningWordsA - B to app.js
+export {
+  winningWordsa,
+}
+
+export {
+    winningWordsb,
+  }
