@@ -21,10 +21,11 @@
 //LightvDark button to click for a light rainbow mode versus dark rainbow mode
 /*-------------------------------- Functions --------------------------------*/
 //initializer for the board, turnsLeft, winner (red, orange yellow, green, blue and purple), render
-//function render that has winningOption, updateMessage within it
-//function update board using if, else: if its a winning option it will turn rainbow using innerHTML and an image source (each letter will be photoshopped or a graphic video of a rainbow word turning), else you are sent a losing message using innerHTML
-//function message update using if winning option, else if losing option
-//function winning message if and else if for gold (6 guesses), silver(7-8 guesses), and bronze(9 to 10 guesses)  using innerHTML, also include playBornThisWay (will include clip in a separate audio.js)
+//function render that has updateBoard, renderBoard, updateMessage, winningMessage within it
+//function updateboard using if, else: if its a winning option it will turn rainbow using innerHTML and an image source (each letter will be photoshopped or a graphic video of a rainbow word turning), else you are sent a losing message using innerHTML
+//function renderboard - uses for Each as it goes through the board
+//function updateMessage using if winning option, else if losing option
+//function winningMessage if and else if for gold (6 guesses), silver(7-8 guesses), and bronze(9 to 10 guesses)  using innerHTML, also include playBornThisWay (will include clip in a separate audio.js)
 //function handleClick using parseInt to make each space into numbers for each board - board one is A1-100, board 2 is B1-100 for each space. There will be 6 boards. Include checkWinWord and render
 //function turn, using for loop that needs to be less than 10 turns. Resets with reset button
 //functionCheckWinWord using foreach and mathabs
