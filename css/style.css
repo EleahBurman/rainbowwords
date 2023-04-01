@@ -1,0 +1,91 @@
+body {
+  background-color: #acf2f3
+}
+
+h1 {
+  height: 50px;
+  background-image: linear-gradient(rgb(233, 127, 233), yellow);
+  font-family: 'Shrikhand', cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 3px 3px rgb(0,0,0);
+}
+.container {
+  max-width: 600px;
+  max-height: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h2 {
+  height: 20px;
+  background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
+  font-family: 'Shrikhand', cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 3px 3px rgb(0,0,0);
+}
+
+h3 {
+  height: 20px;
+  padding: 0;
+  background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
+  font-family: 'Shrikhand', cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+}
+
+.row {
+  display: flex;
+  height: 50px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  margin-bottom: 10px
+}
+
+.column {
+  display: flex;
+  background-color: navy;
+  font-family: 'Shrikhand', cursive;
+  color: white;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  box-shadow: 0px 0px 3px 3px rgb(0,0,0);
+  flex-basis: 100%;
+  flex: 1;
+}
+
+@media screen and (min-width: 800px) {
+  .column {
+    flex: 1;
+  }
+}
+
+button#reset-button {
+  background-color: rgb(233, 127, 233);
+  color:rgb(255, 255, 255);
+  font-family: 'Shrikhand', cursive;
+  justify-content: center;
+  border-radius:10px;
+  box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+  margin: auto;
+}
+
+button#light-dark-button {
+  background-color: rgb(233, 127, 233);
+  color:rgb(255, 255, 255);
+  font-family: 'Shrikhand', cursive;
+  justify-content: center;
+  border-radius:10px;
+  box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+  margin: auto;
+}
