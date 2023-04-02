@@ -19,10 +19,3 @@ const winningWordsb = [
 ]
 
 //export the function randomWinningWordsA - B to app.js
-export {
-  winningWordsa,
-}
-
-export {
-    winningWordsb,
-  }
