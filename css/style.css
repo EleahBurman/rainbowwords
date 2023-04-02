@@ -1,5 +1,7 @@
 body {
-  background-color: #acf2f3
+  background-image: url("../assets/images/rainbowBG.png");
+  background-repeat: contain;
+  background-size: 1400px 900px;
 }
 
 h1 {
@@ -55,7 +57,7 @@ h3 {
 
 .column {
   display: flex;
-  background-color: rgb(10, 52, 236);
+  background-color: rgb(10, 52, 236, 0.4);
   font-family: 'Shrikhand', cursive;
   color: white;
   justify-content: center;
