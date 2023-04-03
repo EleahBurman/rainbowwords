@@ -120,23 +120,28 @@ function getRandomletter(x){
 }
 getRandomletter()
 
+function handleClick(event) {
+  const sqrIdx = event.target.id
+  console.log('sqrIdx',sqrIdx)
 
-
-function handleClick(event){
-//square index is equal to all the values possible
-  const sqrIdx = (event.target.id) 
-  changeTurn()
-  console.log(event.target.id , 'event')
-    if (locationWinningvalues.includes(sqrIdx)) {
-      console.log(sqrIdx,'sqrIdx')
-    } else {console.log('dothelosingthings')}
-  //checkBox()
+  winningWordsa.forEach((word) => {
+    if (word[sqrIdx]) {
+      console.log('is this on?')
+      rainbow(event.target.id)
+      //checkBox()
+    }
+  })
 }
 //function checkBox adds 1 every time a turn goes down by one && in word is true
 //function checkWinword uses the total of each word is equivalent to the values from board
 
-function rainbow () {
-  //set this to rainbow by using innerHtml ,add class list
+function rainbow (id) {
+  //created element which is equivalent to the the div you click on 
+  const element = document.querySelector(`#${id}`)
+  console.log(element, 'hi element')
+  //add classlist to that particular element
+  element.classList.add('rainbow')
+
 }
 
 function changeTurn(){

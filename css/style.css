@@ -66,6 +66,16 @@ h3 {
   flex-basis: 100%;
   flex: 1;
 }
+
+.rainbow {
+  background-image: linear-gradient(rgb(255, 2, 2),rgb(255, 162, 2),  rgb(233, 221, 127));
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  font-size: 50px;
+}
+
 .columnTwo {
   display: flex;
   font-family: 'Shrikhand', cursive;
