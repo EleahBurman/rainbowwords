@@ -43,7 +43,7 @@ resetButton.addEventListener('click', init)
 //initializer for the turnsLeft, winner, render
 init()
 function init (){
-  turn = 10
+  turn = 40
   winner = false
   boardVal = 0
   board = [null, null, null, null, null, null, null, null, null, null,
@@ -105,8 +105,10 @@ function getRandomletter(x){
 getRandomletter()
 
 function handleClick(event) {
+  //turn is subtracted every time a box is clicked
+  turn--
+  console.log(turn, 'this is the turn we are on')
   const sqrIdx = event.target.id
-
   winningWordsa.forEach((word) => {
     if (word[sqrIdx]) {
       rainbow(event.target.id)
@@ -118,6 +120,7 @@ function handleClick(event) {
 
 //updateBoard will change the null spot to add 1 if the letter is in the board
 function updateBoard(){
+  //add board val every time a winning square is clicked
   boardVal++
   console.log(boardVal,'how much')
 }
@@ -131,7 +134,7 @@ function checkWinword(){
   }, 0)
   console.log(total, 'is there a value')
   if (boardVal === total){
-    winner
+    winnerWins()
   }
 }
 console.log(checkWinword , 'is this thing on')
@@ -153,15 +156,15 @@ function removeRainbow (){
   });
 }
 
-function changeTurn(){
-  //if there is a winner message the winner and game ends
-  if (winner ===true){
-    messageWinner()
-    return
-  }
+function winnerWins(){
+  winner = true
+  //message winner
+  messageWinner()
+}
+function sendMessage(){
+
   //if there are more turns lef then subtract a turn and message keep playing
-  else if (turn > 0){
-    turn - 1
+  if (turn > 0){
     messageKeepplaying()
   }
     messageLoser()
@@ -169,17 +172,24 @@ function changeTurn(){
 
 function messageWinner(){
   //message gold trophy winner if found in 6 turns
-  if (turn = 4){
-    message.textContent = `Congratulations! You win a golden rainbow trophy!`
-    message.innerHTML = `<img src ='./assets/images/gold.png'>`
+  if (turn >= 4){
+    message.innerHTML = `Congratulations! You win a golden rainbow trophy!`
+    //create variable body by selecting it via query selector
+    let body = document.querySelector('body')
+    //create variable golden image via create element
+    let goldenimg = document.createElement('img')
+    //set golden image's source
+    goldenimg.src = './assets/images/gold.png'
+    //add the golden image to the body
+    body.appendChild(goldenimg)
   }
   //message silver trophy winner if found in 7 turns
-  else if (turn = 3){
+  else if (turn === 3){
     message.textContent = `Congratulations! You win a silver rainbow trophy!`
     message.innerHTML = `<img src ='./assets/images/silver.png'>`
   }
   //message bronze winner if found in 8 or more turns
-  {
+  else{
     message.textContent = `Congratulations! You win a bronze rainbow trophy!`
     message.innerHTML = `<img src ='./assets/images/bronze.png'>`
   }
