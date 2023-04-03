@@ -24,7 +24,7 @@ const randomLetters = [
 //include variables with the term let for board (build logic), turnsleft, winner, message (winning and losing) (why is board One not working)
 let winner, turnsLeft, message
 /*------------------------ Cached Element References ------------------------*/
-// square choices are equal to anything in class column
+// square choices are equal to each div in class column
 const squareChoices = document.querySelectorAll('.column')
 // include message every time someone chooses a wrong letter or winning word using query selector
 const messageUser = document.querySelector('#message')  
@@ -43,19 +43,22 @@ init()
 function init (){
   turnsLeft = 10
   winner = false
+  render ()
+}
+
+//render sets up board for both winning and losing letters by implementing functions
+function render(){
   setBoard()
   getRandomletter()
-  //render ()
 }
-//go through each element in the winning words array and each key becomes an id in html (find elements by using ids)
+
+
 function setBoard (){
   //for each object we iterate through the winning words array and look at each object
   winningWordsa.forEach(obj=> {
-    //we used object.keys to get keys included in an object as strings
+    //we used object.keys we iterate through in order to get keys as a string
     Object.keys(obj).forEach(key=>{
-      console.log(key)
       const winningLetter = document.querySelector(`#${key}`)
-      console.log(winningLetter)
       //dynamically pass a key through an object to access a value by using bracket notation
       winningLetter.textContent = obj[key]
     })
@@ -86,16 +89,68 @@ getRandomletter()
 //function handleClick using parseInt to make each space into numbers for each board - board one is A1-100, board 2 is B1-100 for each space. There will be 6 boards. Include checkWinword and render
 
 function handleClick(event){
-//   //if square choices equal the keys of winning words then change letters rainbow
+//square index is equal to all the values possible
   const sqrIdx = (event.target.id) 
+  changeTurn()
   console.log(event.target.id , 'event')
-    locationWinningvalues.includes(sqrIdx) ? console.log('yes') : console.log('no')
-  
-//   // if squareChoices === winningWordsA.forEach(value => {
-//   //   //return letter transformed to a bubble rainbow version of it
-//   //   return 
-//   // });
+    if (locationWinningvalues.includes(sqrIdx)) {
+      dothewinningthings
+    } else {dothelosingthings}
 }
+
+//function checkWinword using for each, mathabs, and the const randomWinningwords, and set to winner=true
+
+// function checkforWinword(){
+//   winningWordsa.forEach(function(word)){
+//     if(locationWinningvalues=true
+//   }
+// }
+
+
+function rainbow () {
+  //set this to rainbow by using innerHtml ,add class list
+}
+
+function changeTurn(){
+  //if there is a winner message the winner and game ends
+  if (winner ===true){
+    messageWinner()
+    return
+  }
+  //if there are more turns lef then subtract a turn and message keep playing
+  else if (turn > 0){
+    turn - 1
+    messageKeepplaying()
+  }
+    messageLoser()
+}
+
+function messageWinner(){
+  //message gold trophy winner if found in 6 turns
+  if (turn = 4){
+    message.textContent = `Congratulations! You win a golden rainbow trophy!`
+    message.innerHTML = `<img src ='./assets/images/gold.png'>`
+  }
+  //message silver trophy winner if found in 7 turns
+  else if (turn = 3){
+    message.textContent = `Congratulations! You win a silver rainbow trophy!`
+    message.innerHTML = `<img src ='./assets/images/silver.png'>`
+  }
+  //message bronze winner if found in 8 or more turns
+  {
+    message.textContent = `Congratulations! You win a bronze rainbow trophy!`
+    message.innerHTML = `<img src ='./assets/images/bronze.png'>`
+  }
+}
+
+function messageKeepplaying(){
+  message.textContent = `Find your magical trophy! You have only ${turn}s left!`
+}
+
+function messageLoser(){
+  message.textContent = `Better luck next time! Here's a consolation prize!`
+}
+// }
 //function render that has updateBoard, renderBoard, updateMessage, winningMessage within it
 //function updateBoard using if, else: if its a winning option it will turn rainbow using innerHTML and an image source (each letter will be photoshopped or a graphic video of a rainbow word turning), else you are sent a losing message using innerHTML
 //function renderboard - uses forEach as it iterates over the squares through the board
