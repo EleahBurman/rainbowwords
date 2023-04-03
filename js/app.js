@@ -58,6 +58,7 @@ function init (){
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,]
+    message.textContent = 'Click each 🌈 letter'
   //updateBoard()
   removeRainbow()
   render ()
