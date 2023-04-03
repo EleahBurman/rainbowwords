@@ -5,46 +5,63 @@
 /*-------------------------------- Constants --------------------------------*/
 //audio from audio.js
 //create objects within an array that is equal to winningwords
+
 const winningWordsa = [
   {A0: 'n', A1: 'o', A2: 'n', A3: 'b', A4: 'i', A5: 'n', A6: 'a', A7: 'r', A8: 'y'},
   {D2: 'g', D3: 'e', D4: 'n', D5: 'd', D6: 'e', D7: 'r'},
   {F0: 'g', F1: 'a', F2: 'y'},
   {G3: 't', G4: 'r', G5: 'a', G6: 'n', G7: 's'},
   {H3: 'f', H4: 'e', H5: 'm', H6: 'm', H7: 'e'},
-  {B9: 'l', C9: 'e', D9: 's', E9: 'b', F9: 'i', G9: 'a', H9: 'n'}
+  {B9: 'l', C9: 'e', D9: 's', E9: 'b', F9: 'i', G9: 'a', H9: 'n'},
 ]
+
+//hardcoded location which is not correct
 const locationWinningvalues = ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A8', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'F0', 'F1', 'F2', 'G3', 'G4', 'G5', 'G6', 'G7', 'H3', 'H4', 'H5', 'H6', 'H7', 'B9', 'C9', 'D9', 'E9', 'F9', 'G9', 'H9'
 ]
 //create a const for random letters assign a random letter to open strings that are not set by winning words
 const randomLetters = [
-  {A9: '',B0: '', B1: '', B2: '', B3: '', B4: '', B5: '', B6: '', B7: '', B8: '', C0: '', C1: '', C2: '', C3: '', C4: '', C5: '', C6: '', C7: '', C8: '', D0: '', D1: '', D8: '', E0: '', E1: '', E2: '', E3: '', E4: '', E5: '', E6: '', E7: '', E8: '', F3: '', F4: '', F5: '', F6: '', F7: '', F8: '', G0: '', G1: '', G2: '', G8: '', H0: '', H1: '', H2: '', H8: '', H9: '', I0: '', I1: '', I2: '', I3: '', I4: '', I5: '', I6: '', I7: '', I8: '', I9: '', J0: '', J1: '', J2: '', J3: '', J4: '', J5: '', J6: '', J7: '', J8: '', J9: ''}
+  {A9: '',B0: '', B1: '', B2: '', B3: '', B4: '', B5: '', B6: '', B7: '', B8: '', C0: '', C1: '', C2: '', C3: '', C4: '', C5: '', C6: '', C7: '', C8: '', D0: '', D1: '', D8: '', E0: '', E1: '', E2: '', E3: '', E4: '', E5: '', E6: '', E7: '', E8: '', F3: '', F4: '', F5: '', F6: '', F7: '', F8: '', G0: '', G1: '', G2: '', G8: '', H0: '', H1: '', H2: '', H8: '', I0: '', I1: '', I2: '', I3: '', I4: '', I5: '', I6: '', I7: '', I8: '', I9: '', J0: '', J1: '', J2: '', J3: '', J4: '', J5: '', J6: '', J7: '', J8: '', J9: ''}
 ]
+
 
 /*---------------------------- Variables (state) ----------------------------*/
 //include variables with the term let for board (build logic), turnsleft, winner, message (winning and losing) (why is board One not working)
-let winner, turnsLeft, message
+let winner, turn
 /*------------------------ Cached Element References ------------------------*/
 // square choices are equal to each div in class column
 const squareChoices = document.querySelectorAll('.column')
 // include message every time someone chooses a wrong letter or winning word using query selector
-const messageUser = document.querySelector('#message')  
+const message = document.querySelector('#message')  
 // include reset button using query selector
-const resetBtn = document.querySelector('#reset-buton')
+const resetButton = document.querySelector('#reset-button')
 /*----------------------------- Event Listeners -----------------------------*/
 //squareChoices targeting the item click square to invoke handle click flunction
 squareChoices.forEach(function(squareChoice){
   squareChoice.addEventListener('click', handleClick)
 })
 //listens for the click of the reset button and effects function turn, and initializer, new game
+resetButton.addEventListener('click', init)
 //lightvDark button to click for a light rainbow mode versus dark rainbow mode
 /*-------------------------------- Functions --------------------------------*/
 //initializer for the turnsLeft, winner, render
 init()
 function init (){
-  turnsLeft = 10
+  turn = 10
   winner = false
+  board = [null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,]
+  //updateBoard()
   render ()
 }
+
 
 //render sets up board for both winning and losing letters by implementing functions
 function render(){
@@ -64,10 +81,27 @@ function setBoard (){
     })
   })
 }
+console.log(setBoard, 'winning words set')
 setBoard()
 
+//updateBoard will change the null spot to 1 if the letter is in the board
+// function updateBoard(boardVal, idx){
+//   if(boardVal === null && (squareChoices.inword){
+//     (boardVal + 1)
+//     changeTurn()
+//     rainbow()
+//   }
+//   else if(boardVal && squareChoices.inword){
+//     (boardVal + 1)
+//     changeTurn()
+//     rainbow()
+//   }
+//   else if(!squareChoices.inword){
+//   changeTurn()
+//   }
+// }
 function getRandomletter(x){
-    //alphabet is a string of every letter
+  //alphabet is a string of every letter
     let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g',
         'h', 'i', 'j', 'k', 'l', 'm', 'n',
         'o', 'p', 'q', 'r', 's', 't', 'u',
@@ -86,7 +120,7 @@ function getRandomletter(x){
 }
 getRandomletter()
 
-//function handleClick using parseInt to make each space into numbers for each board - board one is A1-100, board 2 is B1-100 for each space. There will be 6 boards. Include checkWinword and render
+
 
 function handleClick(event){
 //square index is equal to all the values possible
@@ -94,18 +128,12 @@ function handleClick(event){
   changeTurn()
   console.log(event.target.id , 'event')
     if (locationWinningvalues.includes(sqrIdx)) {
-      dothewinningthings
-    } else {dothelosingthings}
+      console.log(sqrIdx,'sqrIdx')
+    } else {console.log('dothelosingthings')}
+  //checkBox()
 }
-
-//function checkWinword using for each, mathabs, and the const randomWinningwords, and set to winner=true
-
-// function checkforWinword(){
-//   winningWordsa.forEach(function(word)){
-//     if(locationWinningvalues=true
-//   }
-// }
-
+//function checkBox adds 1 every time a turn goes down by one && in word is true
+//function checkWinword uses the total of each word is equivalent to the values from board
 
 function rainbow () {
   //set this to rainbow by using innerHtml ,add class list
