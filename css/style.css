@@ -1,6 +1,9 @@
 body {
   background-image: url("../assets/images/rainbowBG.png");
-  background-size: 1400px 900px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100%;
 }
 
 h1 {

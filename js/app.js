@@ -59,6 +59,7 @@ function init (){
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,]
   //updateBoard()
+  removeRainbow()
   render ()
 }
 
@@ -142,6 +143,12 @@ function rainbow (id) {
   //add classlist to that particular element
   element.classList.add('rainbow')
 
+}
+
+function removeRainbow (){
+  squareChoices.forEach(square => {
+    square.classList.remove('rainbow')
+  });
 }
 
 function changeTurn(){
