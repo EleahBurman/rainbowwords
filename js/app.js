@@ -45,6 +45,7 @@ init()
 function init (){
   turn = 10
   winner = false
+  boardVal = 0
   board = [null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
@@ -55,7 +56,6 @@ function init (){
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,]
-  boardVal = 0
     message.textContent = 'Click each 🌈 letter'
   //updateBoard()
   removeRainbow()
@@ -111,14 +111,15 @@ function handleClick(event) {
     if (word[sqrIdx]) {
       rainbow(event.target.id)
       updateBoard()
-      //checkBox()
+      checkWinword()
     }
   })
 }
 
 //updateBoard will change the null spot to add 1 if the letter is in the board
-function updateBoard(boardVal, idx){
-  boardVal ++
+function updateBoard(){
+  boardVal++
+  console.log(boardVal,'how much')
 }
 
 function checkWinword(){
@@ -126,13 +127,14 @@ function checkWinword(){
   let total = winningWordsa.reduce((acc, word) => {
     //we are adding the length of each object in the array to get a total value
     return acc + Object.keys(word).length
-    console.log(acc)
     //starting value is 0
   }, 0)
+  console.log(total, 'is there a value')
   if (boardVal === total){
     winner
   }
 }
+console.log(checkWinword , 'is this thing on')
 
 function rainbow (id) {
   //created element which is equivalent to the the div you click on 
@@ -143,7 +145,9 @@ function rainbow (id) {
 
 }
 
+//removes rainbow class when reset is pressed
 function removeRainbow (){
+  //for each square remove anything with the class list rainbow
   squareChoices.forEach(square => {
     square.classList.remove('rainbow')
   });
