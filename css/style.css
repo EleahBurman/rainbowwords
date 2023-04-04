@@ -106,6 +106,10 @@ h3 {
   margin: auto;
 }
 
+.strikethrough {
+  text-decoration-color: cornflowerblue;
+  text-decoration-line: line-through;
+}
 .columnTwo {
   display: flex;
   font-family: 'Shrikhand', cursive;

@@ -57,17 +57,22 @@ function init (){
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,]
-    message.textContent = `You have ${turn} clicks left`
-  //updateBoard()
   removeRainbow()
+  removeStrikethrough()
+  resetBoard()
   render ()
 }
 
 
 //render sets up board for both winning and losing letters by implementing functions
-function render(){
+function resetBoard(){
   setBoard()
   getRandomletter()
+}
+
+function render(){
+  message.textContent = `You have ${turn} clicks left`
+  
 }
 
 
@@ -104,8 +109,8 @@ function getRandomletter(x){
 
 
 function handleClick(event) {
-  //turn is subtracted every time a box is clicked
   turn--
+  //turn is subtracted every time a box is clicked
   console.log(turn, 'this is the turn we are on')
   const sqrIdx = event.target.id
   //every time we click on square, coordinates are added
@@ -118,6 +123,8 @@ function handleClick(event) {
       crossout()
     }
   })
+  //turn()
+  render()
 }
 
 //updateBoard will change the null spot to add 1 if the letter is in the board
@@ -127,13 +134,19 @@ function updateBoard(){
   console.log(boardVal,'how much is boardval')
 }
 
+// function turn(){
+//   if (turn===0){
+//   messageLoser()
+//   }
+// }
+
 function checkWinword(){
   //if current boardval = the amount of correct square choices
   let total = winningWordsa.reduce((acc, word) => {
     //we are adding the length of each object in the array to get a total value
     return acc + Object.keys(word).length
     //starting value is 0
-  }, -1)
+  }, 0)
   console.log(total, 'is there a value')
   if (boardVal === total){
     winnerWins()
@@ -144,10 +157,8 @@ console.log(checkWinword , 'is this thing on')
 function rainbow (id) {
   //created element which is equivalent to the the div you click on 
   const element = document.querySelector(`#${id}`)
-  console.log(element, 'hi element')
   //add classlist to that particular element
   element.classList.add('rainbow')
-
 }
 
 //removes rainbow class when reset is pressed
@@ -184,35 +195,56 @@ function crossout(){
   console.log(completedWords, 'completed words')
 
   //each time we have a completed word
+
+
 completedWords.forEach(word => {
   //strikeout word
-  const element = document.querySelector(`#${word}`) 
-  element.style.textDecoration = 'line-through'
+  const wordfound = document.querySelector(`#${word}`) 
+  wordfound.classList.add('strikethrough')
 });
-
-
-
-
-
-
 }
+
+function removeStrikethrough(){ let completedWords = []
+  let words = []
+  let wordPlaces = []
+  //iterate through each word object to see if it exists in the array
+  winningWordsa.forEach(wordObject => {
+    //makes all the values from object.values into one string with join to create singular words
+    let word = Object.values(wordObject).join('')
+    words.push(word)
+    //finds all of word's locations
+    let wordPlace = Object.keys(wordObject)
+    wordPlaces.push(wordPlace)
+  
+  });
+  //have to access word places array of arrays by using forEach to find the index corresponding to the word Place
+  wordPlaces.forEach((wordPlace, idx) => {
+    // use every and includes to see the array exists within the array - we want to see if all the word places are inside allsquaresclicked
+    let hasAll = wordPlace.every(elem => allsquaresclicked.includes(elem))
+      if (hasAll === true) {
+        //we want the idx (location) of the words to be pushed inside the completed words array
+      completedWords.push(words[idx])
+      }
+  })
+  console.log(completedWords, 'completed words')
+
+  //each time we have a completed word
+completedWords.forEach(word => {
+  //strikeout word
+  const wordfound = document.querySelector(`#${word}`) 
+  wordfound.classList.remove('strikethrough')
+})
+}
+
 function winnerWins(){
   winner = true
   //message winner
   messageWinner()
 }
-function sendMessage(){
-
-  //if there are more turns lef then subtract a turn and message keep playing
-  if (turn > 0){
-    messageKeepplaying()
-  }
-    messageLoser()
-}
 
 function messageWinner(){
   //message gold trophy winner if found in 6 turns
-  if (turn >= 4){
+  if (turn > 4){
     message.innerHTML = `Congratulations! You win a golden rainbow trophy!`
     //create variable body by selecting it via query selector
     let body = document.querySelector('body')
@@ -225,7 +257,7 @@ function messageWinner(){
     body.appendChild(goldenimg)
   }
   //message silver trophy winner if found in 7 turns
-  else if (turn === 3){
+  else if (turn == 3){
     message.textContent = `Congratulations! You win a silver rainbow trophy!`
     //create variable body by selecting it via query selector
     let body = document.querySelector('body')
@@ -238,7 +270,7 @@ function messageWinner(){
     body.appendChild(silverimg)
   }
   //message bronze winner if found in 8 or more turns
-  {
+  else if(turn <= 2) {
     message.textContent = `Congratulations! You win a bronze rainbow trophy!`
      //create variable body by selecting it via query selector
     let body = document.querySelector('body')
@@ -252,13 +284,14 @@ function messageWinner(){
   }
 }
 
-function messageKeepplaying(){
-  message.textContent = `Find your magical trophy! You have only ${turn}s left!`
-}
-
 function messageLoser(){
   message.textContent = `Better luck next time! Here's a consolation prize!`
 }
+
+function removeTrophy(){
+    //for each square remove anything with the class list rainbow
+    document.querySelectorAll('img').style.display='none';
+    }
 // }
 //function render that has updateBoard, renderBoard, updateMessage, winningMessage within it
 //function updateBoard using if, else: if its a winning option it will turn rainbow using innerHTML and an image source (each letter will be photoshopped or a graphic video of a rainbow word turning), else you are sent a losing message using innerHTML
