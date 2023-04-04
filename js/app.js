@@ -30,6 +30,7 @@ const squareChoices = document.querySelectorAll('.column')
 // include message every time someone chooses a wrong letter or winning word using query selector
 const message = document.querySelector('#message')  
 // include reset button using query selector
+const allsquaresclicked = []
 const resetButton = document.querySelector('#reset-button')
 /*----------------------------- Event Listeners -----------------------------*/
 //squareChoices targeting the item click square to invoke handle click flunction
@@ -56,7 +57,7 @@ function init (){
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,]
-    message.textContent = 'Click each 🌈 letter'
+    message.textContent = `You have ${turn} clicks left`
   //updateBoard()
   removeRainbow()
   render ()
@@ -81,8 +82,6 @@ function setBoard (){
     })
   })
 }
-console.log(setBoard, 'winning words set')
-setBoard()
 
 function getRandomletter(x){
   //alphabet is a string of every letter
@@ -102,18 +101,21 @@ function getRandomletter(x){
       })
     })
 }
-getRandomletter()
+
 
 function handleClick(event) {
   //turn is subtracted every time a box is clicked
   turn--
   console.log(turn, 'this is the turn we are on')
   const sqrIdx = event.target.id
+  //every time we click on square, coordinates are added
+  allsquaresclicked.push(sqrIdx)
   winningWordsa.forEach((word) => {
     if (word[sqrIdx]) {
       rainbow(event.target.id)
       updateBoard()
       checkWinword()
+      crossout()
     }
   })
 }
@@ -122,7 +124,7 @@ function handleClick(event) {
 function updateBoard(){
   //add board val every time a winning square is clicked
   boardVal++
-  console.log(boardVal,'how much')
+  console.log(boardVal,'how much is boardval')
 }
 
 function checkWinword(){
@@ -131,7 +133,7 @@ function checkWinword(){
     //we are adding the length of each object in the array to get a total value
     return acc + Object.keys(word).length
     //starting value is 0
-  }, 0)
+  }, -1)
   console.log(total, 'is there a value')
   if (boardVal === total){
     winnerWins()
@@ -156,6 +158,44 @@ function removeRainbow (){
   });
 }
 
+function crossout(){
+  let completedWords = []
+  let words = []
+  let wordPlaces = []
+  //iterate through each word object to see if it exists in the array
+  winningWordsa.forEach(wordObject => {
+    //makes all the values from object.values into one string with join to create singular words
+    let word = Object.values(wordObject).join('')
+    words.push(word)
+    //finds all of word's locations
+    let wordPlace = Object.keys(wordObject)
+    wordPlaces.push(wordPlace)
+  
+  });
+  //have to access word places array of arrays by using forEach to find the index corresponding to the word Place
+  wordPlaces.forEach((wordPlace, idx) => {
+    // use every and includes to see the array exists within the array - we want to see if all the word places are inside allsquaresclicked
+    let hasAll = wordPlace.every(elem => allsquaresclicked.includes(elem))
+      if (hasAll === true) {
+        //we want the idx (location) of the words to be pushed inside the completed words array
+      completedWords.push(words[idx])
+      }
+  });
+  console.log(completedWords, 'completed words')
+
+  //each time we have a completed word
+completedWords.forEach(word => {
+  //strikeout word
+  const element = document.querySelector(`#${word}`) 
+  element.style.textDecoration = 'line-through'
+});
+
+
+
+
+
+
+}
 function winnerWins(){
   winner = true
   //message winner
@@ -180,18 +220,35 @@ function messageWinner(){
     let goldenimg = document.createElement('img')
     //set golden image's source
     goldenimg.src = './assets/images/gold.png'
+    goldenimg.classList.add('trophy')
     //add the golden image to the body
     body.appendChild(goldenimg)
   }
   //message silver trophy winner if found in 7 turns
   else if (turn === 3){
     message.textContent = `Congratulations! You win a silver rainbow trophy!`
-    message.innerHTML = `<img src ='./assets/images/silver.png'>`
+    //create variable body by selecting it via query selector
+    let body = document.querySelector('body')
+    //create variable silver image via create element
+    let silverimg = document.createElement('img')
+    //set silver image's source
+    silverimg.src = './assets/images/silver.png'
+    silverimg.classList.add('trophy')
+    //add the golden image to the body
+    body.appendChild(silverimg)
   }
   //message bronze winner if found in 8 or more turns
-  else{
+  {
     message.textContent = `Congratulations! You win a bronze rainbow trophy!`
-    message.innerHTML = `<img src ='./assets/images/bronze.png'>`
+     //create variable body by selecting it via query selector
+    let body = document.querySelector('body')
+    //create variable bronze image via create element
+    let bronzeimg = document.createElement('img')
+    //set bronze image's source
+    bronzeimg.src = './assets/images/bronze.png'
+    bronzeimg.classList.add('trophy')
+    //add the bronze image to the body
+    body.appendChild(bronzeimg)
   }
 }
 
