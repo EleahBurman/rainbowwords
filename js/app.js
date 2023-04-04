@@ -44,7 +44,7 @@ squareChoices.forEach(function(squareChoice){
 })
 //listens for the click of the reset button and effects function turn, and initializer, new game
 resetButton.addEventListener('click', init)
-//lightvDark button to click for a light rainbow mode versus dark rainbow mode
+//lightdark button to click for a light rainbow mode versus dark rainbow mode
 lightdarkbutton.addEventListener('click', dark)
 /*-------------------------------- Functions --------------------------------*/
 //initializer for the turnsLeft, winner, render
@@ -79,17 +79,20 @@ function init (){
 }
 
 
-//render sets up board for both winning and losing letters by implementing functions
+//reset sets up board for both winning and losing letters by implementing functions
 function resetBoard(){
   setBoard()
   getRandomletter()
 }
 
+
 function render(){
+  //if turn is not 0 and winner is not true, then you have turns left
   if (turn !== 0){
     if (winner !== true){
       message.textContent = `You have ${turn} clicks left`
     }
+    //otherwise message loser
   } else {
       messageLoser()
   }
@@ -129,6 +132,7 @@ function getRandomletter(x){
 
 
 function handleClick(event) {
+  //continue the game if there is no winner or loser
   if (winner !== true && loser !== true){
   //turn is subtracted every time a box is clicked
   turn--
@@ -146,6 +150,7 @@ function handleClick(event) {
   })
   render()
   }
+  //otherwise the game is over
   else return
 }
 
@@ -155,7 +160,6 @@ function updateBoard(){
   boardVal++
   console.log(boardVal,'how much is boardval')
 }
-
 
 function checkWinword(){
   //if current boardval = the amount of correct square choices
@@ -183,11 +187,10 @@ function removeRainbow (){
   //for each square remove anything with the class list rainbow
   squareChoices.forEach(square => {
     square.classList.remove('rainbow')
-  });
+  })
 }
 
 function crossout(){
-
   //iterate through each word object to see if it exists in the array
   winningWordsa.forEach(wordObject => {
     //makes all the values from object.values into one string with join to create singular words
@@ -196,9 +199,7 @@ function crossout(){
     //finds all of word's locations
     let wordPlace = Object.keys(wordObject)
     wordPlaces.push(wordPlace)
-  
-  });
-
+  })
   //have to access word places array of arrays by using forEach to find the index corresponding to the word Place
   wordPlaces.forEach((wordPlace, idx) => {
     // use every and includes to see the array exists within the array - we want to see if all the word places are inside allsquaresclicked
@@ -207,14 +208,13 @@ function crossout(){
         //we want the idx (location) of the words to be pushed inside the completed words array
       completedWords.push(words[idx])
       }
-  });
-
+  })
 //iterate through each completed word
 completedWords.forEach(word => {
   //strikeout word using class list add
   const wordfound = document.querySelector(`#${word}`) 
   wordfound.classList.add('strikethrough')
-});
+})
 }
 
 //remove strikethrough after reset
@@ -229,8 +229,7 @@ function removeStrikethrough(){ let completedWords = []
     //finds all of word's locations
     let wordPlace = Object.keys(wordObject)
     wordPlaces.push(wordPlace)
-  
-  });
+  })
   //have to access word places array of arrays by using forEach to find the index corresponding to the word Place
   wordPlaces.forEach((wordPlace, idx) => {
     // use every and includes to see the array exists within the array - we want to see if all the word places are inside allsquaresclicked
@@ -262,8 +261,6 @@ function messageWinner(){
   //message gold trophy winner if found in 6 turns
   if (turn > 4){
     message.innerHTML = `Congratulations! You win a golden rainbow trophy!`
-    //create variable body by selecting it via query selector
-    let body = document.querySelector('body')
     //create variable golden image via create element
     let goldenimg = document.createElement('img')
     //set golden image's source
@@ -276,8 +273,6 @@ function messageWinner(){
   //message silver trophy winner if found in 7 turns
   else if (turn == 3){
     message.textContent = `Congratulations! You win a silver rainbow trophy!`
-    //create variable body by selecting it via query selector
-    let body = document.querySelector('body')
     //create variable silver image via create element
     let silverimg = document.createElement('img')
     //set silver image's source
@@ -290,8 +285,6 @@ function messageWinner(){
   //message bronze winner if found in 8 or more turns
   else if(turn <= 2) {
     message.textContent = `Congratulations! You win a bronze rainbow trophy!`
-     //create variable body by selecting it via query selector
-    let body = document.querySelector('body')
     //create variable bronze image via create element
     let bronzeimg = document.createElement('img')
     //set bronze image's source
@@ -326,14 +319,3 @@ function checkDarkPref() {
     dark()
   }
 }
-
-// checkDarkPref()
-// }
-//function render that has updateBoard, renderBoard, updateMessage, winningMessage within it
-//function updateBoard using if, else: if its a winning option it will turn rainbow using innerHTML and an image source (each letter will be photoshopped or a graphic video of a rainbow word turning), else you are sent a losing message using innerHTML
-//function renderboard - uses forEach as it iterates over the squares through the board
-//function updateMessage using if winning option, else if losing option
-//function winningMessage if and else if for gold (6 guesses), silver(7-8 guesses), and bronze(9 to 10 guesses)  using innerHTML, also include playBornThisWay (will include clip in a separate audio.js)
-//function checkWinword using for each, mathabs, and the const randomWinningwords, and set to winner=true
-//function toggleLightRainbow using classes can toggle from a lighter rainbow scheme to a darker rainbow scheme
-//function checkDark will check if someone prefers dark mode over light mode using window match media and class name
