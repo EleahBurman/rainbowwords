@@ -6,6 +6,10 @@ body {
   min-height: 100%;
 }
 
+.dark {
+  background-image: url("../assets/images/rainyrainbow.png")
+}
+
 h1 {
   height: 40px;
   background-image: linear-gradient(rgb(233, 127, 233), yellow);
@@ -99,11 +103,16 @@ h3 {
   font-size: 50px;
 }
 
-.trophy {
-  display:flex;
+.trophy-box {
+  display: none;
   justify-content: center;
   flex-direction: column;
   margin: auto;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 200px;
+  height: 200px;
 }
 
 .strikethrough {
