@@ -36,7 +36,8 @@ h1 {
 }
 
 h2 {
-  height: 20px;
+  font-size: 25px;
+  height: 30px;
   background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
   color: white;
   -webkit-text-stroke: 1px black;
@@ -49,7 +50,8 @@ h2 {
 }
 
 h3 {
-  height: 20px;
+  font-size: 25px;
+  height: 60px;
   padding: 0;
   background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
   color: white;
@@ -151,6 +153,7 @@ h3 {
 }
 
 button#reset-button {
+  font-size: 15px;
   background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
   color:rgb(255, 255, 255);
   -webkit-text-stroke: 1px black;
@@ -161,7 +164,12 @@ button#reset-button {
   margin: auto;
 }
 
+.emptyspace{
+  margin-top: 10px;
+}
+
 button#lightdarkbutton {
+  font-size: 15px;
   background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
   color:rgb(255, 255, 255);
   -webkit-text-stroke: 1px black;
