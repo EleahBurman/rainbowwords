@@ -7,7 +7,7 @@ body {
 }
 
 .dark {
-  background-image: url("../assets/images/rainyrainbow.png")
+  background-image: url("../assets/images/rainyrainbow.jpg");
 }
 
 h1 {
@@ -149,7 +149,7 @@ button#reset-button {
   margin: auto;
 }
 
-button#light-dark-button {
+button#lightdarkbutton {
   background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
   color:rgb(255, 255, 255);
   font-family: 'Shrikhand', cursive;

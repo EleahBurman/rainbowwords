@@ -45,7 +45,7 @@ squareChoices.forEach(function(squareChoice){
 //listens for the click of the reset button and effects function turn, and initializer, new game
 resetButton.addEventListener('click', init)
 //lightvDark button to click for a light rainbow mode versus dark rainbow mode
-//lightdarkButton.addEventListener('click', dark)
+lightdarkbutton.addEventListener('click', dark)
 /*-------------------------------- Functions --------------------------------*/
 //initializer for the turnsLeft, winner, render
 init()
@@ -312,19 +312,19 @@ function removeTrophy(){
     document.querySelectorAll('img').style.display='none';
     }
 
-// function dark(){
-//   let element = document.body;
-//   element.classList.toggle('')
-// }
+function dark(){
+  let element = document.body;
+  element.classList.toggle('dark')
+}
 
-// function checkDarkPref() {
-//   if (
-//     window.matchMedia("(prefers-color-scheme:dark)").matches &&
-//     body.className !== "dark"
-//   ) {
-//     toggleLightDark()
-//   }
-// }
+function checkDarkPref() {
+  if (
+    window.matchMedia("(prefers-color-scheme:dark)").matches &&
+    body.className !== "dark"
+  ) {
+    dark()
+  }
+}
 
 // checkDarkPref()
 // }
