@@ -52,6 +52,7 @@ init()
 function init (){
   turn = 40
   winner = false
+  loser = false
   boardVal = 0
   board = [null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
@@ -85,11 +86,13 @@ function resetBoard(){
 }
 
 function render(){
-  if ((winner !== true)){
-    message.textContent = `You have ${turn} clicks left`}
-    else if (turn === 0){
-      messageLoser
+  if (turn !== 0){
+    if (winner !== true){
+      message.textContent = `You have ${turn} clicks left`
     }
+  } else {
+      messageLoser()
+  }
 }
 
 
@@ -126,6 +129,7 @@ function getRandomletter(x){
 
 
 function handleClick(event) {
+  if (winner !== true && loser !== true){
   //turn is subtracted every time a box is clicked
   turn--
   console.log(turn, 'this is the turn we are on')
@@ -140,8 +144,9 @@ function handleClick(event) {
       crossout()
     }
   })
-  //turn()
   render()
+  }
+  else return
 }
 
 //updateBoard will change the null spot to add 1 if the letter is in the board
@@ -151,11 +156,6 @@ function updateBoard(){
   console.log(boardVal,'how much is boardval')
 }
 
-// function turn(){
-//   if (turn===0){
-//   messageLoser()
-//   }
-// }
 
 function checkWinword(){
   //if current boardval = the amount of correct square choices
@@ -304,6 +304,7 @@ function messageWinner(){
 }
 
 function messageLoser(){
+  loser = true
   message.textContent = `Better luck next time! Here's a consolation prize!`
 }
 
