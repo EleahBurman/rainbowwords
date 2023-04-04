@@ -268,7 +268,7 @@ function messageWinner(){
     let goldenimg = document.createElement('img')
     //set golden image's source
     goldenimg.src = './assets/images/gold.png'
-    goldenimg.classList.add('trophy')
+    goldenimg.classList.add('trophybox')
     //add the golden image to the body
     trophybox.style.display='flex'
     trophybox.appendChild(goldenimg)
@@ -282,7 +282,7 @@ function messageWinner(){
     let silverimg = document.createElement('img')
     //set silver image's source
     silverimg.src = './assets/images/silver.png'
-    silverimg.classList.add('trophy')
+    silverimg.classList.add('trophybox')
     //add the golden image to the body
     trophybox.style.display='flex'
     trophybox.appendChild(silverimg)
@@ -296,7 +296,7 @@ function messageWinner(){
     let bronzeimg = document.createElement('img')
     //set bronze image's source
     bronzeimg.src = './assets/images/bronze.png'
-    bronzeimg.classList.add('trophy')
+    bronzeimg.classList.add('trophybox')
     //add the bronze image to the body
     trophybox.style.display='flex'
     trophybox.appendChild(bronzeimg)
