@@ -161,7 +161,7 @@ li {
   }
 }
 
-button#reset-button {
+.button {
   font-size: 15px;
   background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
   color:rgb(255, 255, 255);
@@ -171,20 +171,14 @@ button#reset-button {
   border-radius:10px;
   box-shadow: 0px 0px 2px 2px rgb(0,0,0);
   margin: auto;
+}
+
+/* h2, h3, button style for dark */
+h2.dark, h3.dark, .button.dark {
+  background-image: linear-gradient(rgb(61, 0, 122), rgb(233, 127, 233));
+  color: #ffff
 }
 
 .emptyspace{
   margin-top: 10px;
-}
-
-button#lightdarkbutton {
-  font-size: 15px;
-  background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
-  color:rgb(255, 255, 255);
-  -webkit-text-stroke: 1px black;
-  font-family: 'Shrikhand', cursive;
-  justify-content: center;
-  border-radius:10px;
-  box-shadow: 0px 0px 2px 2px rgb(0,0,0);
-  margin: auto;
 }

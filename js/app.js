@@ -35,6 +35,7 @@ const message = document.querySelector('#message')
 // include reset button using query selector
 let allsquaresclicked = []
 const resetButton = document.querySelector('#reset-button')
+const lightDarkButton = document.querySelector('#light-dark-button')
 let listwords = document.querySelectorAll('.listword')
 const trophybox = document.querySelector('.trophybox')
 /*----------------------------- Event Listeners -----------------------------*/
@@ -45,7 +46,7 @@ squareChoices.forEach(function(squareChoice){
 //listens for the click of the reset button and effects function turn, and initializer, new game
 resetButton.addEventListener('click', init)
 //lightdark button to click for a light rainbow mode versus dark rainbow mode
-lightdarkbutton.addEventListener('click', dark)
+lightDarkButton.addEventListener('click', dark)
 /*-------------------------------- Functions --------------------------------*/
 //initializer for the turnsLeft, winner, render
 init()
@@ -65,7 +66,7 @@ function init (){
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,]
   listwords.forEach(word => {
-      word.classList.remove("strikethrough")
+      word.classList.remove('strikethrough')
     }) 
   completedWords=[]
   words=[]
@@ -316,14 +317,39 @@ function removeTrophy(){
 }
 
 function dark(){
-  let element = document.body;
-  element.classList.toggle('dark')
+  //select body in the html to make it usable
+  const body = document.querySelector('body')
+  //select body in the html to make it usable
+  body.classList.toggle('dark')
+
+  //select h2 in the html to make it usable
+  const headerTwo = document.querySelector('h2')
+  //select h2 in the html to make it usable
+  headerTwo.classList.toggle('dark')
+
+  //select h3 in the html to make it usable
+  const headerThree = document.querySelector('h3')
+  //select h3 in the html to make it usable
+  headerThree.classList.toggle('dark')
+    
+  const buttons = document.querySelectorAll('button')
+  
+  //loop through the node list and toggle the class for each button
+  buttons.forEach(button => {
+    button.classList.toggle('dark')
+  })
+  if (body.classList.contains('dark')){
+    lightDarkButton.innerText = 'Dark Mode'
+  } else {
+    //otherwise change to light mode
+    lightDarkButton.innerText = 'Light Mode'
+  }
 }
 
 function checkDarkPref() {
   if (
-    window.matchMedia("(prefers-color-scheme:dark)").matches &&
-    body.className !== "dark"
+    window.matchMedia('(prefers-color-scheme:dark)').matches &&
+    body.className !== 'dark'
   ) {
     dark()
   }
