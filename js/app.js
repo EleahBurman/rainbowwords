@@ -75,8 +75,8 @@ function init (){
   removeRainbow()
   removeStrikethrough()
   resetBoard()
-  render ()
   hideImages ()
+  render ()
 }
 
 
@@ -89,11 +89,13 @@ function resetBoard(){
 
 function render(){
   //if turn is not 0 and winner is not true, then you have turns left
-  if ((turn !== 0) && (winner !== true)){
-      message.textContent = `You have ${turn} clicks left`
+  if (turn !== 0){
+    if (winner !== true){
+    message.textContent = `You have ${turn} clicks left`
+    }
     //otherwise message loser because turn is 0
   } else if (turn === 0){
-    endGame()
+    messageLoser()
   }
 }
 
@@ -123,7 +125,7 @@ function getRandomletter(x){
         //key 2 is now changed from an empty string to a random letter of alphabet
         key2 = (emptyString + `${alphabet[(Math.floor(Math.random() * 26))]}`)
         losingLetter.textContent = key2
-        console.log(key2)
+        //console.log(key2)
       })
     })
 }
@@ -131,6 +133,8 @@ function getRandomletter(x){
 
 function handleClick(event) {
   console.log('handle click function called')
+  console.log(loser, 'loser')
+  console.log(winner, 'winner')
   const sqrIdx = event.target.id
   //check if the square has already been clicked
   if(allsquaresclicked.includes(sqrIdx)){
@@ -140,22 +144,22 @@ function handleClick(event) {
   if (winner !== true && loser !== true){
   //turn is subtracted every time a box is clicked
   turn--
-  console.log(turn, 'this is the turn we are on')
+  //console.log(turn, 'this is the turn we are on')
   //every time we click on square, coordinates are added
   allsquaresclicked.push(sqrIdx)
   winningWordsa.forEach((word) => {
     if (word[sqrIdx]) {
       rainbow(event.target.id)
       updateBoard()
-      checkWinword()
       crossout()
+      checkWinword()
     }
   })
   render()
   }
   //otherwise the game is over
   else {
-    return
+    messageLoser()
   }
 }
 
@@ -163,7 +167,7 @@ function handleClick(event) {
 function updateBoard(){
   //add board val every time a winning square is clicked for the first time
     boardVal++
-  console.log(boardVal,'how much is boardval')
+  //console.log(boardVal,'how much is boardval')
 }
 
 function checkWinword(){
@@ -173,12 +177,12 @@ function checkWinword(){
     return acc + Object.keys(word).length
     //starting value is 0
   }, 0)
-  console.log(total, 'is there a total value for clicks needed to win')
+  //console.log(total, 'is there a total value for clicks needed to win')
   if (boardVal === total){
-    endGame()
+    winnerWins()
   }
 }
-console.log(checkWinword , 'is there a winning word')
+//console.log(checkWinword , 'is there a winning word')
 
 function rainbow (id) {
   //created element which is equivalent to the the div you click on 
@@ -216,8 +220,9 @@ function crossout(){
   })
 //iterate through each completed word
 completedWords.forEach(word => {
+  //console.log(`Trying to cross out word: ${word}`)
   //strikeout word using class list add
-  const wordfound = document.querySelector(`#${word}`) 
+  const wordfound = document.querySelector(`#${word}`)
   wordfound.classList.add('strikethrough')
 })
 }
@@ -244,7 +249,7 @@ function removeStrikethrough(){ let completedWords = []
       completedWords.push(words[idx])
       }
   })
-  console.log(completedWords, 'completed words')
+  //console.log(completedWords, 'completed words')
 
   //each time we have a completed word
 completedWords.forEach(word => {
@@ -255,47 +260,102 @@ completedWords.forEach(word => {
 })
 }
 
-function endGame(){
+function winnerWins(){
+  //reassign value of winner to true
+  winner = true
+  //message winner
+  messageWinner()
+}
+
+function messageWinner(){
   //message gold trophy winner if found in 6 turns
   if (turn > 4){
     message.textContent = `Congratulations! You win a golden rainbow trophy!`
     winner = true
-    //display hidden image
-    document.querySelector('#gold').src = './assets/images/gold.png'
-    //add the golden image to the body
-    document.querySelector('#gold').style.display='flex'
+    //create variable golden image via create element
+    let goldenimg = document.createElement('img')
+    //set golden image's source
+    goldenimg.src = './assets/images/gold.png'
+    //add the golden image to the classlist trophybox
+    goldenimg.classList.add('trophybox')
+    //set id of gold image
+    goldenimg.setAttribute('id', 'golden-image')
+    document.querySelector('.trophybox').style.display='flex'
+    trophybox.appendChild(goldenimg)
   }
   //message silver trophy winner if found in 7 turns
   else if (turn == 3){
     message.textContent = `Congratulations! You win a silver rainbow trophy!`
-    //display hidden image
-    document.querySelector('#silver').src = './assets/images/silver.png'
-    //add the silver image to the body
-    document.querySelector('#silver').style.display='flex'
+    //create variable silver image via create element
+    let silverimg = document.createElement('img')
+    //set silver image's source
+    silverimg.src = './assets/images/silver.png'
+    //add the silver image to the classlist trophybox
+    silverimg.classList.add('trophybox')
+    //set id of silver image
+    silverimg.setAttribute('id', 'silver-image')
+    document.querySelector('.trophybox').style.display='flex'
+    trophybox.appendChild(silverimg)
   }
   //message bronze winner if found in 8 or more turns
   else if(turn <= 2) {
     message.textContent = `Congratulations! You win a bronze rainbow trophy!`
-    //display hidden image
-    document.querySelector('#bronze').src = './assets/images/bronze.png'
-    //add the bronze image to the body
-    document.querySelector('#bronze').style.display='flex'
+    //create variable golden image via create element
+    let bronzeimg = document.createElement('img')
+    //set golden image's source
+    bronzeimg.src = './assets/images/bronze.png'
+    //add the golden image to the classlist trophybox
+    bronzeimg.classList.add('trophybox')
+    //set id of bronze image
+    bronzeimg.setAttribute('id', 'bronze-image')
+    document.querySelector('.trophybox').style.display='flex'
+    trophybox.appendChild(bronzeimg)
   }
-  else if (turn === 0){
-  message.textContent = `Better luck next time! You still win a prize!`
-  //display hidden image
-  document.querySelector('#photos').src = './assets/images/trophies.png'
-  //add the bronze image to the body
-  document.querySelector('#photos').style.display='flex'
+  console.log(winner, 'winnerwins')
+}
+
+function messageLoser(){
   loser=true
-  }
+  message.textContent = `Better luck next time! You still win a prize!`
+  //create trophies image via create element
+  let trophiesimg = document.createElement('img')
+  //set golden image's source
+  trophiesimg.src = './assets/images/trophies.png'
+  //add the golden image to the classlist trophybox
+  trophiesimg.classList.add('trophybox')
+  //set id of trophies image
+  trophiesimg.setAttribute('id', 'trophies-image')
+  document.querySelector('.trophybox').style.display='flex'
+  trophybox.appendChild(trophiesimg)
+  console.log(loser, 'loser loses')
 }
 
 function hideImages(){
-  document.querySelector('#gold').style.display='none'
-  document.querySelector('#silver').style.display='none'
-  document.querySelector('#bronze').style.display='none'
-  document.querySelector('#photos').style.display='none'
+  document.querySelector('.trophybox').style.display='none'
+  //remove gold trophy by selecting id
+  let goldenimg = document.querySelector('#golden-image')
+  //check if image is there then remove
+  if(goldenimg){
+    goldenimg.remove()
+  }
+  //remove silver trophy by selecting id
+  let silverimg = document.querySelector('#silver-image')
+  //check if image is there then remove
+  if(silverimg){
+    silverimg.remove()
+  }
+  //remove bronze trophy by selecting id
+  let bronzeimg = document.querySelector('#bronze-image')
+  //check if image is there then remove
+  if(bronzeimg){
+    bronzeimg.remove()
+  }
+  //remove trophies photo by selecting id
+  let trophiesimg = document.querySelector('#trophies-image')
+  //check if image is there then remove
+  if(trophiesimg){
+  trophiesimg.remove()
+  }
 }
 
 function dark(){

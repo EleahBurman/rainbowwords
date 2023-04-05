@@ -86,7 +86,6 @@ h3 {
   box-shadow: 0px 0px 3px 3px rgb(0,0,0);
   flex-basis: 100%;
   flex: 1;
-  pointer-events: auto;
 }
 
 .wordlist{
@@ -127,7 +126,7 @@ li {
 }
 
 .trophybox {
-  display: flex;
+  display:flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -182,10 +181,4 @@ h2.dark, h3.dark, .button.dark {
 
 .emptyspace{
   margin-top: 10px;
-}
-
-#gold, #silver, #bronze, #photos {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
 }
