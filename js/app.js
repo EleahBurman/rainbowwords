@@ -74,6 +74,7 @@ function init (){
   trophybox.style.display='none'
   removeRainbow()
   removeStrikethrough()
+  removeTrophy()
   resetBoard()
   render ()
 }
@@ -92,7 +93,7 @@ function render(){
     if (winner !== true){
       message.textContent = `You have ${turn} clicks left`
     }
-    //otherwise message loser
+    //otherwise message loser because turn is 0
   } else {
       messageLoser()
   }
@@ -298,13 +299,21 @@ function messageWinner(){
 
 function messageLoser(){
   loser = true
-  message.textContent = `Better luck next time! Here's a consolation prize!`
+  message.textContent = `Better luck next time! You still win a prize!`
+  //create variable photos of trophies via create element
+  let photosimg = document.createElement('img')
+  //set photos of trophies image's source
+  photosimg.src = './assets/images/trophies.png'
+  photosimg.classList.add('trophybox')
+  //add the photos of trophies image to the body
+  trophybox.style.display='flex'
+  trophybox.appendChild(photosimg)
 }
 
 function removeTrophy(){
-    //for each square remove anything with the class list rainbow
-    document.querySelectorAll('img').style.display='none';
-    }
+  //remove all img added by hiding them
+  trophybox.style.display='none'
+}
 
 function dark(){
   let element = document.body;

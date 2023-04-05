@@ -105,6 +105,11 @@ h3 {
   font-size:40px;
   color: white;
   -webkit-text-stroke: 2px black;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin-bottom: 0%;
+  list-style-type: none;
 }
 
 li {
