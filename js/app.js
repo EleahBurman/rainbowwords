@@ -72,12 +72,11 @@ function init (){
   words=[]
   wordPlaces=[]
   allsquaresclicked=[]
-  trophybox.style.display='none'
   removeRainbow()
   removeStrikethrough()
-  removeTrophy()
   resetBoard()
   render ()
+  hideImages ()
 }
 
 
@@ -90,16 +89,13 @@ function resetBoard(){
 
 function render(){
   //if turn is not 0 and winner is not true, then you have turns left
-  if (turn !== 0){
-    if (winner !== true){
+  if ((turn !== 0) && (winner !== true)){
       message.textContent = `You have ${turn} clicks left`
-    }
     //otherwise message loser because turn is 0
-  } else {
-      messageLoser()
+  } else if (turn === 0){
+    endGame()
   }
 }
-
 
 function setBoard (){
   //for each object we iterate through the winning words array and look at each object
@@ -134,6 +130,7 @@ function getRandomletter(x){
 
 
 function handleClick(event) {
+  console.log('handle click function called')
   const sqrIdx = event.target.id
   //check if the square has already been clicked
   if(allsquaresclicked.includes(sqrIdx)){
@@ -178,7 +175,7 @@ function checkWinword(){
   }, 0)
   console.log(total, 'is there a total value for clicks needed to win')
   if (boardVal === total){
-    winnerWins()
+    endGame()
   }
 }
 console.log(checkWinword , 'is there a winning word')
@@ -258,68 +255,47 @@ completedWords.forEach(word => {
 })
 }
 
-function winnerWins(){
-  //reassign value of winner to true
-  winner = true
-  //message winner
-  messageWinner()
-}
-
-function messageWinner(){
+function endGame(){
   //message gold trophy winner if found in 6 turns
   if (turn > 4){
-    message.innerHTML = `Congratulations! You win a golden rainbow trophy!`
-    //create variable golden image via create element
-    let goldenimg = document.createElement('img')
-    //set golden image's source
-    goldenimg.src = './assets/images/gold.png'
-    goldenimg.classList.add('trophybox')
+    message.textContent = `Congratulations! You win a golden rainbow trophy!`
+    winner = true
+    //display hidden image
+    document.querySelector('#gold').src = './assets/images/gold.png'
     //add the golden image to the body
-    trophybox.style.display='flex'
-    trophybox.appendChild(goldenimg)
+    document.querySelector('#gold').style.display='flex'
   }
   //message silver trophy winner if found in 7 turns
   else if (turn == 3){
     message.textContent = `Congratulations! You win a silver rainbow trophy!`
-    //create variable silver image via create element
-    let silverimg = document.createElement('img')
-    //set silver image's source
-    silverimg.src = './assets/images/silver.png'
-    silverimg.classList.add('trophybox')
-    //add the golden image to the body
-    trophybox.style.display='flex'
-    trophybox.appendChild(silverimg)
+    //display hidden image
+    document.querySelector('#silver').src = './assets/images/silver.png'
+    //add the silver image to the body
+    document.querySelector('#silver').style.display='flex'
   }
   //message bronze winner if found in 8 or more turns
   else if(turn <= 2) {
     message.textContent = `Congratulations! You win a bronze rainbow trophy!`
-    //create variable bronze image via create element
-    let bronzeimg = document.createElement('img')
-    //set bronze image's source
-    bronzeimg.src = './assets/images/bronze.png'
-    bronzeimg.classList.add('trophybox')
+    //display hidden image
+    document.querySelector('#bronze').src = './assets/images/bronze.png'
     //add the bronze image to the body
-    trophybox.style.display='flex'
-    trophybox.appendChild(bronzeimg)
+    document.querySelector('#bronze').style.display='flex'
+  }
+  else if (turn === 0){
+  message.textContent = `Better luck next time! You still win a prize!`
+  //display hidden image
+  document.querySelector('#photos').src = './assets/images/trophies.png'
+  //add the bronze image to the body
+  document.querySelector('#photos').style.display='flex'
+  loser=true
   }
 }
 
-function messageLoser(){
-  loser = true
-  message.textContent = `Better luck next time! You still win a prize!`
-  //create variable photos of trophies via create element
-  let photosimg = document.createElement('img')
-  //set photos of trophies image's source
-  photosimg.src = './assets/images/trophies.png'
-  photosimg.classList.add('trophybox')
-  //add the photos of trophies image to the body
-  trophybox.style.display='flex'
-  trophybox.appendChild(photosimg)
-}
-
-function removeTrophy(){
-  //remove all img added by hiding them
-  trophybox.style.display='none'
+function hideImages(){
+  document.querySelector('#gold').style.display='none'
+  document.querySelector('#silver').style.display='none'
+  document.querySelector('#bronze').style.display='none'
+  document.querySelector('#photos').style.display='none'
 }
 
 function dark(){
