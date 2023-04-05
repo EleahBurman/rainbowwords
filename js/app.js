@@ -39,11 +39,11 @@ const lightDarkButton = document.querySelector('#light-dark-button')
 let listwords = document.querySelectorAll('.listword')
 const trophybox = document.querySelector('.trophybox')
 /*----------------------------- Event Listeners -----------------------------*/
-//squareChoices targeting the item click square to invoke handle click flunction
+//squareChoices targeting the item click square to invoke handle click function
 squareChoices.forEach(function(squareChoice){
   squareChoice.addEventListener('click', handleClick)
 })
-//listens for the click of the reset button and effects function turn, and initializer, new game
+//listens for the click of the reset button and is then initialized
 resetButton.addEventListener('click', init)
 //lightdark button to click for a light rainbow mode versus dark rainbow mode
 lightDarkButton.addEventListener('click', dark)
@@ -134,12 +134,16 @@ function getRandomletter(x){
 
 
 function handleClick(event) {
+  const sqrIdx = event.target.id
+  //check if the square has already been clicked
+  if(allsquaresclicked.includes(sqrIdx)){
+    return
+  }
   //continue the game if there is no winner or loser
   if (winner !== true && loser !== true){
   //turn is subtracted every time a box is clicked
   turn--
   console.log(turn, 'this is the turn we are on')
-  const sqrIdx = event.target.id
   //every time we click on square, coordinates are added
   allsquaresclicked.push(sqrIdx)
   winningWordsa.forEach((word) => {
@@ -153,13 +157,15 @@ function handleClick(event) {
   render()
   }
   //otherwise the game is over
-  else return
+  else {
+    return
+  }
 }
 
 //updateBoard will change the null spot to add 1 if the letter is in the board
 function updateBoard(){
-  //add board val every time a winning square is clicked
-  boardVal++
+  //add board val every time a winning square is clicked for the first time
+    boardVal++
   console.log(boardVal,'how much is boardval')
 }
 
