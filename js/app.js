@@ -21,7 +21,8 @@ const randomLetters = [
 
 /*---------------------------- Variables (state) ----------------------------*/
 //include variables with the term let for board (build logic), turnsleft, winner, message (winning and losing) (why is board One not working)
-let winner, turn, boardVal, loser, board
+let winner, turn, boardVal, loser
+let board = []
 let completedWords = []
 let words = []
 let wordPlaces = []
@@ -44,7 +45,7 @@ squareChoices.forEach(function(squareChoice){
 })
 //listens for the click of the reset button and is then initialized
 resetButton.addEventListener('click', init)
-//lightdark button to click for a light rainbow mode versus dark rainbow mode
+//lightdark button to click for a light mode versus dark mode
 lightDarkButton.addEventListener('click', dark)
 /*-------------------------------- Functions --------------------------------*/
 //initializer for the turnsLeft, winner, render
@@ -53,7 +54,6 @@ function init (){
   turn = 40
   winner = false
   loser = false
-  console.log(loser)
   boardVal = 0
   board = [null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
@@ -84,7 +84,6 @@ function resetBoard(){
   setBoard()
   getRandomletter()
 }
-
 
 function render(){
   //if turn is not 0 and winner is not true, then you have turns left
@@ -124,16 +123,11 @@ function getRandomletter(x){
         //key 2 is now changed from an empty string to a random letter of alphabet
         key2 = (emptyString + `${alphabet[(Math.floor(Math.random() * 26))]}`)
         losingLetter.textContent = key2
-        //console.log(key2)
       })
     })
 }
 
-
 function handleClick(event) {
-  console.log('handle click function called')
-  console.log(loser, 'loser')
-  console.log(winner, 'winner')
   const sqrIdx = event.target.id
   //check if the square has already been clicked
   if(allsquaresclicked.includes(sqrIdx)){
@@ -143,14 +137,19 @@ function handleClick(event) {
   if (winner !== true && loser !== true){
   //turn is subtracted every time a box is clicked
   turn--
-  //console.log(turn, 'this is the turn we are on')
   //every time we click on square, coordinates are added
   allsquaresclicked.push(sqrIdx)
+  //for each word
   winningWordsa.forEach((word) => {
+    //if truthy that word is within the sqrIdx array
     if (word[sqrIdx]) {
+      //turn the square rainbow
       rainbow(event.target.id)
+      //add board value
       updateBoard()
+      //cross out word
       crossout()
+      //check if the user has won
       checkWinword()
     }
   })
@@ -166,7 +165,6 @@ function handleClick(event) {
 function updateBoard(){
   //add board val every time a winning square is clicked for the first time
     boardVal++
-  //console.log(boardVal,'how much is boardval')
 }
 
 function checkWinword(){
@@ -176,12 +174,11 @@ function checkWinword(){
     return acc + Object.keys(word).length
     //starting value is 0
   }, 0)
-  //console.log(total, 'is there a total value for clicks needed to win')
+  //if the boardval is equal to the total amount of correct words
   if (boardVal === total){
     winnerWins()
   }
 }
-//console.log(checkWinword , 'is there a winning word')
 
 function rainbow (id) {
   //created element which is equivalent to the the div you click on 
@@ -227,9 +224,7 @@ completedWords.forEach(word => {
 }
 
 //remove strikethrough after reset
-function removeStrikethrough(){ let completedWords = []
-  let words = []
-  let wordPlaces = []
+function removeStrikethrough(){
   //iterate through each word object to see if it exists in the array
   winningWordsa.forEach(wordObject => {
     //makes all the values from object.values into one string with join to create singular words
@@ -248,7 +243,6 @@ function removeStrikethrough(){ let completedWords = []
       completedWords.push(words[idx])
       }
   })
-  //console.log(completedWords, 'completed words')
 
   //each time we have a completed word
 completedWords.forEach(word => {
@@ -315,8 +309,9 @@ function messageWinner(){
 }
 
 function messageLoser(){
+  //loser is reassigned to true
   loser=true
-  message.textContent = `Better luck next time! You still win a prize!`
+  message.textContent = `Better luck next time! You win a photo of a golden trophy!`
   //create trophies image via create element
   let trophiesimg = document.createElement('img')
   //set golden image's source
@@ -332,49 +327,47 @@ function messageLoser(){
 }
 
 function hideImages(){
+  //class trophy box is no longer displayed
   document.querySelector('.trophybox').style.display='none'
   //remove gold trophy by selecting id
   let goldenimg = document.querySelector('#golden-image')
-  //check if image is there then remove
+  //check if gold image is there then remove
   if(goldenimg){
     goldenimg.remove()
   }
   //remove silver trophy by selecting id
   let silverimg = document.querySelector('#silver-image')
-  //check if image is there then remove
+  //check if silver image is there then remove
   if(silverimg){
     silverimg.remove()
   }
   //remove bronze trophy by selecting id
   let bronzeimg = document.querySelector('#bronze-image')
-  //check if image is there then remove
+  //check if bronze image is there then remove
   if(bronzeimg){
     bronzeimg.remove()
   }
   //remove trophies photo by selecting id
   let trophiesimg = document.querySelector('#trophies-image')
-  //check if image is there then remove
+  //check if trophies image is there then remove
   if(trophiesimg){
   trophiesimg.remove()
   }
 }
 
 function dark(){
-  //select body in the html to make it usable
+  //body can now be put into dark mode
   body.classList.toggle('dark')
-
   //select h2 in the html to make it usable
   const headerTwo = document.querySelector('h2')
-  //select h2 in the html to make it usable
+  //headerTwo can now be put into dark mode
   headerTwo.classList.toggle('dark')
-
   //select h3 in the html to make it usable
   const headerThree = document.querySelector('h3')
-  //select h3 in the html to make it usable
+  //headerThree can now be put into dark mode
   headerThree.classList.toggle('dark')
-    
+  //select buttons in the html to make it usable
   const buttons = document.querySelectorAll('button')
-  
   //loop through the node list and toggle the class for each button
   buttons.forEach(button => {
     button.classList.toggle('dark')
