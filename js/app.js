@@ -266,7 +266,7 @@ function messageWinner(){
   if (turn > 4){
     message.textContent = `Congratulations! You win a golden rainbow trophy!`
     winner = true
-    //create variable golden image via create element
+    //create variable golden image to add to DOM
     let goldenimg = document.createElement('img')
     //set golden image's source
     goldenimg.src = './assets/images/gold.png'
@@ -280,7 +280,7 @@ function messageWinner(){
   //message silver trophy winner if found in 7 turns
   else if (turn == 3){
     message.textContent = `Congratulations! You win a silver rainbow trophy!`
-    //create variable silver image via create element
+    //create variable silver image to add to DOM
     let silverimg = document.createElement('img')
     //set silver image's source
     silverimg.src = './assets/images/silver.png'
@@ -306,13 +306,14 @@ function messageWinner(){
     trophybox.appendChild(bronzeimg)
   }
   console.log(winner, 'winnerwins')
+  animateRainbow()
 }
 
 function messageLoser(){
   //loser is reassigned to true
   loser=true
   message.textContent = `Better luck next time! You win a photo of a golden trophy!`
-  //create trophies image via create element
+  //create trophies image to add to DOM
   let trophiesimg = document.createElement('img')
   //set golden image's source
   trophiesimg.src = './assets/images/trophies.png'

@@ -170,7 +170,7 @@ li {
   font-size: 15px;
   background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
   color:rgb(255, 255, 255);
-  -webkit-text-stroke: 1px black;
+  -webkit-text-stroke: 0.8px black;
   font-family: 'Shrikhand', cursive;
   justify-content: center;
   border-radius:10px;
@@ -180,6 +180,8 @@ li {
 
 .button:hover {
   background-image: linear-gradient(rgb(255, 255, 255), rgb(233, 127, 2333));
+  color:cornflowerblue;
+  -moz-text-fill-color: transparent;
 }
 
 /* h2, h3, button style for dark */
@@ -190,8 +192,10 @@ h2.dark, h3.dark, .button.dark {
 
 .button.dark:hover {
   background-image: linear-gradient(rgb(255, 255, 255), rgb(61, 0, 122));
+  color: rgb(6, 251, 247);
+  -moz-text-fill-color: transparent;
 }
-}
+
 .emptyspace{
   margin-top: 10px;
 }
