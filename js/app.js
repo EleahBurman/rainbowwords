@@ -36,6 +36,7 @@ const resetButton = document.querySelector('#reset-button')
 const lightDarkButton = document.querySelector('#light-dark-button')
 let listwords = document.querySelectorAll('.listword')
 const trophybox = document.querySelector('.trophybox')
+const body = document.querySelector('body')
 /*----------------------------- Event Listeners -----------------------------*/
 //squareChoices targeting the item click square to invoke handle click function
 squareChoices.forEach(function(squareChoice){
@@ -360,8 +361,6 @@ function hideImages(){
 
 function dark(){
   //select body in the html to make it usable
-  const body = document.querySelector('body')
-  //select body in the html to make it usable
   body.classList.toggle('dark')
 
   //select h2 in the html to make it usable
@@ -396,3 +395,4 @@ function checkDarkPref() {
     dark()
   }
 }
+checkDarkPref()
