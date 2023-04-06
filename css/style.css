@@ -53,7 +53,9 @@ h2 {
 }
 
 h3 {
+  width: 400 px;
   font-size: 25px;
+  gap: 10px;
   height: 60px;
   padding: 0;
   background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
@@ -167,7 +169,8 @@ li {
 }
 
 .button {
-  font-size: 15px;
+  font-size: 20px;
+  width: 200px;
   background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
   color:rgb(255, 255, 255);
   -webkit-text-stroke: 0.8px black;
@@ -197,5 +200,13 @@ h2.dark, h3.dark, .button.dark {
 }
 
 .emptyspace{
+  margin-top: 25%;
+}
+
+.emptyspaceTwo{
+  margin-top: 30%;
+}
+
+.emptyspaceThree{
   margin-top: 10px;
 }
