@@ -306,7 +306,6 @@ function messageWinner(){
     trophybox.appendChild(bronzeimg)
   }
   console.log(winner, 'winnerwins')
-  animateRainbow()
 }
 
 function messageLoser(){
