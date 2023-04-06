@@ -1,3 +1,17 @@
-//include new audio using let with three seconds from "Born this Way"
-//function playBornThisWay and include a volume and play function using dot notation
-//export playBornthisway
+let photograph = new Audio('../assets/audio/Photograph.mp3')
+let bornThisWay = new Audio('../assets/audio/BornThisWay.mp3')
+
+function playPhotograph() {
+  photograph.volume = 0.25
+  photograph.play()
+}
+
+function playBornThisWay() {
+  bornThisWay.volume = 0.25
+  bornThisWay.play()
+}
+
+export {
+  playPhotograph,
+  playBornThisWay
+}

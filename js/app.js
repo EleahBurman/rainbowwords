@@ -1,11 +1,9 @@
-//Choice of game - "Rainbow Words"
-//Theme - "Rainbow (lgbt)""
-//Find 6 lgbt words in the board in 10 turns - there will be 6 board options (A-E). Plays "Born this Way" when you find all 6 words and words turn rainbow. Win gold, silver, or bronze medal image based on number of guesses. You can toggle between a light rainbow theme and a dark rainbow theme
-
 /*-------------------------------- Constants --------------------------------*/
 //audio from audio.js
+import {playBornThisWay, playPhotograph} from './audio.js'
+// const bornThisWayAudio = playbornThisWay()
+// const photographAudio = playphotograph()
 //create objects within an array that is equal to winningwords
-
 const winningWordsa = [
   {A0: 'n', A1: 'o', A2: 'n', A3: 'b', A4: 'i', A5: 'n', A6: 'a', A7: 'r', A8: 'y'},
   {D2: 'g', D3: 'e', D4: 'n', D5: 'd', D6: 'e', D7: 'r'},
@@ -23,17 +21,17 @@ const randomLetters = [
 
 /*---------------------------- Variables (state) ----------------------------*/
 //include variables with the term let for board (build logic), turnsleft, winner, message (winning and losing) (why is board One not working)
-let winner, turn, boardVal
+let winner, turn, boardVal, loser, board
 let completedWords = []
 let words = []
 let wordPlaces = []
+let allsquaresclicked=[]
 /*------------------------ Cached Element References ------------------------*/
 // square choices are equal to each div in class column
 const squareChoices = document.querySelectorAll('.column')
 // include message every time someone chooses a wrong letter or winning word using query selector
 const message = document.querySelector('#message')  
 // include reset button using query selector
-let allsquaresclicked = []
 const resetButton = document.querySelector('#reset-button')
 const lightDarkButton = document.querySelector('#light-dark-button')
 let listwords = document.querySelectorAll('.listword')
@@ -54,6 +52,7 @@ function init (){
   turn = 40
   winner = false
   loser = false
+  console.log(loser)
   boardVal = 0
   board = [null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
@@ -78,7 +77,6 @@ function init (){
   hideImages ()
   render ()
 }
-
 
 //reset sets up board for both winning and losing letters by implementing functions
 function resetBoard(){
@@ -265,6 +263,7 @@ function winnerWins(){
   winner = true
   //message winner
   messageWinner()
+  playBornThisWay()
 }
 
 function messageWinner(){
@@ -328,6 +327,7 @@ function messageLoser(){
   document.querySelector('.trophybox').style.display='flex'
   trophybox.appendChild(trophiesimg)
   console.log(loser, 'loser loses')
+  playPhotograph()
 }
 
 function hideImages(){
