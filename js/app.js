@@ -373,10 +373,10 @@ function dark(){
     button.classList.toggle('dark')
   })
   if (body.classList.contains('dark')){
-    lightDarkButton.innerText = 'Dark Mode'
+    lightDarkButton.innerText = 'Light Mode'
   } else {
     //otherwise change to light mode
-    lightDarkButton.innerText = 'Light Mode'
+    lightDarkButton.innerText = 'Dark Mode'
   }
 }
 
