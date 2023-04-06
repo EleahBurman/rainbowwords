@@ -1,5 +1,5 @@
 # Rainbow Words
-## [Rainbow Words Screenshot]('./assets/images/ScreenshotofGame3.png')
+## ![Rainbow Words Screenshot](./assets/images/ScreenshotofGame3.png)
 ## [Play Rainbow Words](https://rainbowwords.netlify.app/)
 ## Getting Started
 Rainbow Words was created due to the lack of LGBT game content and to promote LGBT visibility.  The gameplay is as follows:
