@@ -29,6 +29,7 @@ Rainbow Words was created due to the lack of LGBT game content and to promote LG
 * JavaScript
 * Git
 ## Next Steps
+* Rainbow image animated in a semi-circle after you win a trophy that sparkles
 * Multiple word searches in a data folder that can be imported and exported into the js/app.js file
 * A suggestion box for the player to suggest words for future word searches
 * Easy, Medium, and Hard word searches with overlapping words
