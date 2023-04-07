@@ -216,7 +216,6 @@ function crossout(){
   })
 //iterate through each completed word
 completedWords.forEach(word => {
-  //console.log(`Trying to cross out word: ${word}`)
   //strikeout word using class list add
   const wordfound = document.querySelector(`#${word}`)
   wordfound.classList.add('strikethrough')
@@ -305,7 +304,6 @@ function messageWinner(){
     document.querySelector('.trophybox').style.display='flex'
     trophybox.appendChild(bronzeimg)
   }
-  console.log(winner, 'winnerwins')
 }
 
 function messageLoser(){
@@ -322,7 +320,6 @@ function messageLoser(){
   trophiesimg.setAttribute('id', 'trophies-image')
   document.querySelector('.trophybox').style.display='flex'
   trophybox.appendChild(trophiesimg)
-  console.log(loser, 'loser loses')
   playPhotograph()
 }
 
