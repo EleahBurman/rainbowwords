@@ -100,7 +100,7 @@ function render(){
 function setBoard (){
   //for each object we iterate through the winning words array and look at each object
   winningWordsa.forEach(obj=> {
-    //we used object.keys we iterate through in order to get keys as a string
+    // we iterate through object.keys with a parameter of object in order to get keys as a string
     Object.keys(obj).forEach(key=>{
       const winningLetter = document.querySelector(`#${key}`)
       //dynamically pass a key through an object to access a value by using bracket notation
