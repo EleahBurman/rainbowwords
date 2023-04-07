@@ -53,10 +53,11 @@ h2 {
 }
 
 h3 {
-  width: 400 px;
+  width: 100 px;
   font-size: 25px;
-  gap: 10px;
-  height: 60px;
+  flex-wrap: nowrap;
+  gap: 4px;
+  height: fit-content;
   padding: 0;
   background-image: linear-gradient(rgb(233, 127, 233), rgb(180, 127, 233));
   color: white;
@@ -71,7 +72,7 @@ h3 {
 
 .row {
   display: flex;
-  height: 50px;
+  height: 40px;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 10px;
@@ -150,22 +151,16 @@ li {
   text-decoration-color: blue;
   text-decoration-line: line-through;
 }
-.columnTwo {
-  display: flex;
-  font-family: 'Shrikhand', cursive;
-  color: white;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
-}
-
 
 @media screen and (min-width: 800px) {
   .column {
     flex: 1;
   }
+}
+
+.columnTwo {
+  margin-left: 10%;
+  flex-direction: column;
 }
 
 .button {
@@ -178,7 +173,6 @@ li {
   justify-content: center;
   border-radius:10px;
   box-shadow: 0px 0px 2px 2px rgb(0,0,0);
-  margin: auto;
 }
 
 .button:hover {
@@ -200,13 +194,13 @@ h2.dark, h3.dark, .button.dark {
 }
 
 .emptyspace{
-  margin-top: 25%;
+  margin-top: 15%;
 }
 
 .emptyspaceTwo{
-  margin-top: 30%;
+  margin-top: 13%;
 }
 
 .emptyspaceThree{
-  margin-top: 10px;
+  margin-top: 20px;
 }
