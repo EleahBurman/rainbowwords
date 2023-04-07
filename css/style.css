@@ -80,7 +80,7 @@ h3 {
 }
 
 .column {
-  font-size: 30px;
+  font-size: 40px;
   display: flex;
   background-color: rgb(10, 52, 236, 0.4);
   font-family: 'Shrikhand', cursive;
@@ -130,7 +130,7 @@ li {
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent; 
   -moz-text-fill-color: transparent;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .trophybox {
