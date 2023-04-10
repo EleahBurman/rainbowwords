@@ -10,6 +10,14 @@ body {
   background-image: url("../assets/images/rainyrainbow.jpg");
 }
 
+.containerclasslist{
+  display: flex;
+}
+
+.leftcolumn{
+  flex: 15;
+}
+
 h1 {
   font-size:40px;
   color: white;
@@ -22,20 +30,6 @@ h1 {
   justify-content: center;
   align-items: center;
   box-shadow: 0px 0px 3px 3px rgb(0,0,0);
-}
-.leftcolumn{
-  flex: 15;
-}
-.containerclasslist{
-  display: flex;
-
-}
-.container {
-  max-width: 600px;
-  max-height: 300px;
-  margin: 0 auto;
-  text-align: center;
-  flex: 60;
 }
 
 h2 {
