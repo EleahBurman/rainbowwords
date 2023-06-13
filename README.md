@@ -20,7 +20,7 @@ Rainbow Words was created due to the lack of LGBT game content and to promote LG
 
 ## Attributions
 
-* [MDN](https://www.w3schools.com/)
+* [MDN](https://developer.mozilla.org/en-US/)
 * [W3Schools](https://www.w3schools.com/)
 * [Iconduck](https://iconduck.com/emojis/44328/rainbow)
 * [Wallpaperaccess](https://wallpaperaccess.com/rainbow-rain)
