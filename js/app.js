@@ -353,26 +353,20 @@ function hideImages(){
 }
 
 function dark(){
-  //body can now be put into dark mode
   body.classList.toggle('dark')
-  //select h2 in the html to make it usable
+  const headerOne = document.querySelector('h1')
+  headerOne.classList.toggle('dark')
   const headerTwo = document.querySelector('h2')
-  //headerTwo can now be put into dark mode
   headerTwo.classList.toggle('dark')
-  //select h3 in the html to make it usable
   const headerThree = document.querySelector('h3')
-  //headerThree can now be put into dark mode
   headerThree.classList.toggle('dark')
-  //select buttons in the html to make it usable
   const buttons = document.querySelectorAll('button')
-  //loop through the node list and toggle the class for each button
   buttons.forEach(button => {
     button.classList.toggle('dark')
   })
   if (body.classList.contains('dark')){
     lightDarkButton.innerText = 'Light Mode'
   } else {
-    //otherwise change to light mode
     lightDarkButton.innerText = 'Dark Mode'
   }
 }
