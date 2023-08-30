@@ -31,6 +31,11 @@ body {
   justify-content: center;
   align-items: center;
   box-shadow: 0px 0px 3px 3px rgb(0,0,0);
+  width:calc(50vw + 6px);
+}
+
+#description {
+  width:calc(50vw + 6px);
 }
 
 h2 {
@@ -46,10 +51,11 @@ h2 {
   justify-content: center;
   align-items: center;
   box-shadow: 0px 0px 3px 3px rgb(0,0,0);
+  width:calc(20vw + 6px);
 }
 
 h3 {
-  width: 100 px;
+  width:calc(20vw + 6px);
   font-size: 25px;
   flex-wrap: nowrap;
   gap: 4px;
