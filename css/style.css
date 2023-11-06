@@ -95,6 +95,7 @@ h3 {
   box-shadow: 0px 0px 3px 3px rgb(0,0,0);
   flex-basis: 100%;
   flex: 1;
+  cursor: pointer;
 }
 
 .wordlist{
@@ -129,6 +130,15 @@ li {
 
 .rainbow {
   background-image: linear-gradient(rgb(255, 2, 2),rgb(255, 162, 2),  rgb(233, 221, 127));
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+  font-size: 40px;
+}
+
+.notrainbow{
+  background-image: linear-gradient(rgb(255, 2, 247),rgb(2, 247, 255),  rgb(233, 221, 127));
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent; 
@@ -191,6 +201,7 @@ li {
 
 .button:hover {
   animation:slidebg 2s linear infinite;
+  cursor: pointer;
 }
 
 /* h2, h3, button style for dark */
@@ -221,6 +232,7 @@ h2.dark, h3.dark, .button.dark {
 
 .button.dark:hover{
   animation:slidebg 2s linear infinite;
+  cursor: pointer;
 }
 
 .emptyspace{
