@@ -89,7 +89,7 @@ function render(){
   //if turn is not 0 and winner is not true, then you have turns left
   if (turn !== 0){
     if (winner !== true){
-    message.textContent = `You have ${turn} clicks left`
+    message.textContent = `${turn} clicks left`
     }
     //otherwise message loser because turn is 0
   } else if (turn === 0){
